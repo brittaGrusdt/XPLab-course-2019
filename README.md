@@ -1,3 +1,3 @@
 # XPLab-course-2019
 
-Repository containing homework etc. for course Experimental Psychology Lab. 
+This repository contains homework etc. for course Experimental Psychology Lab. 
