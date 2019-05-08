@@ -1,0 +1,58 @@
+---
+title: "HW1 simon task"
+author: "Britta Grusdt"
+date: "5/8/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE, echo = FALSE, message = FALSE}
+knitr::opts_chunk$set(echo=TRUE, 
+                      warning=FALSE,
+                      message=FALSE, 
+                      collapse = TRUE,
+                      cache = TRUE,
+                      dev.args = list(bg = 'transparent'), 
+                      fig.align='center', 
+                      fig.height = 3, 
+                      fig.widht=4)
+require(rmdformats)
+require(tidyverse)
+require(brms)
+options(mc.cores = parallel::detectCores())
+
+theme_set(theme_bw() + theme(plot.background=element_blank()) )
+```
+
+
+## Loading and inspecting the data
+
+```{r}
+d <- read_csv("03_Simon_data_anonym.csv")
+glimpse(d)
+```
+
+```{r}
+d %>% pull(timeSpent) %>% mean()
+```
+
+```{r}
+d %>% pull(timeSpent) %>% summary()
+```
+
+**HW1:** Make a histogram of the `timeSpent`.
+
+```{r}
+ggplot(data = d) +
+  geom_histogram(mapping = aes(x = timeSpent))
+```
+
+To get a more useful histogram, I filtered the data such that only data points
+< 20 are considered.
+
+```{r}
+df <- d %>% filter(timeSpent < 20)
+ggplot(data = df) +
+  geom_histogram(mapping = aes(x = timeSpent))
+```
+
+
